@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hey Animesh! A Little Surprise</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#f5e9d7;--gold:#e9c58e;--muted:#c9c3c1;--panel:rgba(38,40,51,.91)}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 0%,#30313b 0%,#171820 50%,#0d0e13 100%);color:var(--cream);font-family:'DM Sans',sans-serif;display:grid;place-items:center;overflow:hidden;padding:24px}
+.glow{position:fixed;width:420px;height:420px;border-radius:50%;background:rgba(225,174,120,.08);filter:blur(80px);top:15%;left:calc(50% - 210px);pointer-events:none}
+.petals{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:5}
+.petal{position:absolute;top:-35px;width:13px;height:19px;border-radius:90% 5% 90% 5%;background:linear-gradient(135deg,#f5d8d8,#d68c9d);opacity:.72;animation:fall linear infinite;filter:drop-shadow(0 0 5px #f4c8d255)}
+@keyframes fall{0%{transform:translate3d(0,-8vh,0) rotate(0deg);opacity:0}10%{opacity:.8}100%{transform:translate3d(var(--drift),110vh,0) rotate(680deg);opacity:0}}
+.wrap{width:min(100%,590px);position:relative;z-index:2}
+.intro,.card{background:var(--panel);border:1px solid rgba(255,255,255,.17);border-radius:26px;box-shadow:0 25px 80px #0008, inset 0 1px #ffffff0d;backdrop-filter:blur(16px)}
+.intro{text-align:center;padding:38px 30px}
+.eyebrow{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#d8b98e;font-weight:700}
+.envelope{width:106px;height:82px;margin:28px auto 22px;position:relative;background:linear-gradient(145deg,#e8c28e,#b77d67);border-radius:10px;box-shadow:0 12px 30px #0005;cursor:pointer;display:grid;place-items:center;font-size:32px;transition:.3s}
+.envelope:hover{transform:translateY(-6px) rotate(-2deg)}
+.envelope:before{content:"";position:absolute;inset:0;background:linear-gradient(35deg,transparent 49%,#f3d9b2 50%) left/50% 100% no-repeat,linear-gradient(-35deg,transparent 49%,#e9cda7 50%) right/50% 100% no-repeat;border-radius:10px}
+.envelope span{position:relative;z-index:1}
+h1,h2{font-family:'Playfair Display',serif}
+h1{font-size:clamp(29px,6vw,42px);line-height:1.15;margin:12px 0}
+.intro p{color:var(--muted);line-height:1.8;margin:12px auto 24px;max-width:390px}
+button{border:0;border-radius:999px;padding:15px 24px;background:linear-gradient(110deg,#f0d2a2,#dcae72);color:#29232a;font:700 14px 'DM Sans';cursor:pointer;box-shadow:0 7px 22px #0003;transition:.2s}
+button:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.card{display:none;padding:24px;animation:appear .55s ease}
+@keyframes appear{from{opacity:0;transform:translateY(18px) scale(.98)}to{opacity:1;transform:none}}
+.topline{display:flex;justify-content:space-between;gap:12px;color:#c9c1bd;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;font-weight:700}
+.track{height:3px;background:#ffffff20;border-radius:9px;margin:16px 0 20px;overflow:hidden}
+.fill{height:100%;width:16.66%;background:linear-gradient(90deg,#f1d3a0,#d8a76d);transition:width .4s}
+.photo{width:100%;height:250px;object-fit:cover;object-position:center 35%;border-radius:16px;display:block;box-shadow:0 8px 24px #0004}
+.message{font-family:'Playfair Display',serif;font-size:clamp(25px,5vw,35px);line-height:1.2;margin:22px 0 10px;color:#f6e7d3}
+.copy{color:#d3cecb;font-size:15px;line-height:1.65;margin:0 0 24px;min-height:48px}
+.actions{display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap}
+.secondary{background:transparent;color:#ead5b7;border:1px solid #c9a77766;box-shadow:none}
+.final{text-align:center}
+.final .photo{object-position:center 30%}
+.final h2{font-size:34px;margin:20px 0 8px}
+.final p{color:#d6cfca;line-height:1.7}
+.hidden{display:none!important}
+.signature{font-size:12px;letter-spacing:1.5px;color:#c7a77d;margin-top:22px}
+
+/* Opening sequence */
+.opening{background:var(--panel);border:1px solid rgba(255,255,255,.17);border-radius:28px;padding:42px 30px;text-align:center;box-shadow:0 25px 80px #0008,inset 0 1px #ffffff0d;backdrop-filter:blur(16px);animation:rise .8s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(22px) scale(.97)}to{opacity:1;transform:none}}
+.hello{font-family:'Playfair Display',serif;font-size:clamp(36px,8vw,58px);line-height:1.08;margin:16px 0 12px;background:linear-gradient(100deg,#fff0d7,#e5b77f,#f6dfc4);background-clip:text;-webkit-background-clip:text;color:transparent}
+.introline{max-width:390px;margin:0 auto 25px;color:#d3cecb;line-height:1.8}
+.pulse{animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 #e9c58e33}50%{box-shadow:0 0 0 13px #e9c58e00}}
+.stage{display:none;background:var(--panel);border:1px solid rgba(255,255,255,.17);border-radius:28px;padding:36px 28px;text-align:center;box-shadow:0 25px 80px #0008;backdrop-filter:blur(16px);animation:rise .7s ease both}
+.big-envelope{width:138px;height:102px;margin:25px auto 22px;border-radius:13px;background:linear-gradient(145deg,#f0d4a8,#b77d67);position:relative;display:grid;place-items:center;font-size:38px;box-shadow:0 15px 35px #0005;animation:float 3s ease-in-out infinite}
+.big-envelope:before{content:"";position:absolute;inset:0;background:linear-gradient(35deg,transparent 49%,#f7e1bd 50%) left/50% 100% no-repeat,linear-gradient(-35deg,transparent 49%,#e9cda7 50%) right/50% 100% no-repeat;border-radius:13px}
+.big-envelope span{position:relative;z-index:1}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-9px) rotate(1deg)}}
+.stage h2{font-size:clamp(26px,5vw,36px);margin:12px 0}
+.stage p{color:#d3cecb;line-height:1.8;max-width:390px;margin:0 auto 24px}
+.burst{position:fixed;z-index:8;pointer-events:none;left:50%;top:48%;width:10px;height:10px}
+.burst i{position:absolute;font-style:normal;font-size:20px;animation:burst 1.25s ease-out forwards}
+@keyframes burst{0%{transform:translate(0,0) scale(.3) rotate(0);opacity:0}15%{opacity:1}100%{transform:translate(var(--x),var(--y)) scale(1.15) rotate(200deg);opacity:0}}
+.type-cursor:after{content:"|";color:#e9c58e;animation:blink .8s steps(2) infinite}
+@keyframes blink{50%{opacity:0}}
+@media(max-width:520px){.opening,.stage{padding:34px 22px}}
+
+@media(max-width:520px){body{padding:15px}.intro{padding:32px 22px}.card{padding:18px}.photo{height:220px}.copy{font-size:14px}}
+</style>
+</head>
+<body>
+<div class="glow"></div><div class="petals" id="petals"></div>
+<main class="wrap">
+<section class="opening" id="welcome">
+  <div class="eyebrow">A tiny surprise is waiting for you</div>
+  <h1 class="hello type-cursor" id="hello">Hey, Animesh!</h1>
+  <p class="introline">I made a little something for you.<br>No hurry… just take a moment and enjoy. ✨</p>
+  <button class="pulse" id="goLetter">Ready? Tap here gently 💛</button>
+  <div class="signature">MADE WITH GOOD WISHES · JUST FOR YOU</div>
+</section>
+<section class="stage" id="letterStage">
+  <div class="eyebrow">A little note, sealed with good wishes</div>
+  <div class="big-envelope"><span>💌</span></div>
+  <h2>One small request…</h2>
+  <p>Please, pyaar se iss button par click karna.<br>A little surprise is tucked inside this letter. 🌸</p>
+  <button class="pulse" id="openLetter">Open your letter 💌</button>
+</section>
+<section class="card" id="card" aria-live="polite">
+  <div class="topline"><span id="label">A small reminder for you</span><span id="count">01 / 06</span></div>
+  <div class="track"><div class="fill" id="fill"></div></div>
+  <img class="photo" id="photo" src="assets/animesh-portrait-1.png" alt="Animesh">
+  <h2 class="message" id="heading"></h2>
+  <p class="copy" id="copy"></p>
+  <div class="actions"><button class="secondary" id="back">← Back</button><button id="next">Next little note →</button></div>
+</section>
+<section class="card final" id="final">
+  <div class="eyebrow">For you, Animesh</div>
+  <img class="photo" src="assets/animesh-portrait-2.png" alt="Animesh">
+  <h2>Happy Men's Day!</h2>
+  <p>May life bring you peace, purpose, success and countless reasons to smile.</p>
+  <p>Keep choosing yourself. Keep being kind. Keep shining.</p>
+  <div class="signature">WISHING YOU WELL, ALWAYS ✦</div>
+  <div style="margin-top:22px"><button id="again">Read it again ↻</button></div>
+</section>
+</main>
+<script>
+const notes=[
+ {title:"You deserve happiness.",text:"Choose yourself, your peace, and what makes you happy.",img:"assets/animesh-portrait-1.png"},
+ {title:"Keep moving forward.",text:"Dream big, work hard, and go further every day.",img:"assets/animesh-portrait-2.png"},
+ {title:"Never lose your smile.",text:"I hope life gives you beautiful reasons to smile.",img:"assets/animesh-portrait-1.png"},
+ {title:"Stay kind, always.",text:"Respect every woman; kindness is real strength.",img:"assets/animesh-portrait-2.png"},
+ {title:"Your journey matters.",text:"Take your time. Grow, learn, and enjoy your journey.",img:"assets/animesh-portrait-1.png"},
+ {title:"A heartfelt wish.",text:"No expectations—just wishing you happiness and success, always.",img:"assets/animesh-portrait-2.png"}
+];
+let index=0;
+const welcome=document.getElementById('welcome'),letterStage=document.getElementById('letterStage');
+const card=document.getElementById('card'),final=document.getElementById('final');
+function flowerBurst(){
+ const b=document.createElement('div');b.className='burst';document.body.appendChild(b);
+ const symbols=['🌸','✨','💛','🌷','✦','🌼','💫','❀'];
+ for(let i=0;i<20;i++){const s=document.createElement('i');s.textContent=symbols[i%symbols.length];const a=(Math.PI*2*i)/20;const r=100+Math.random()*115;s.style.setProperty('--x',Math.cos(a)*r+'px');s.style.setProperty('--y',Math.sin(a)*r+'px');b.appendChild(s)}
+ setTimeout(()=>b.remove(),1400);
+}
+function showNote(){
+ const n=notes[index];welcome.style.display='none';letterStage.style.display='none';final.style.display='none';card.style.display='block';
+ document.getElementById('label').textContent="A little reminder for you · "+String(index+1).padStart(2,'0')+" / 06";
+ document.getElementById('count').textContent=String(index+1).padStart(2,'0')+" OF 06";
+ document.getElementById('fill').style.width=((index+1)/6*100)+"%";
+ document.getElementById('photo').src=n.img;
+ document.getElementById('heading').textContent=n.title;
+ document.getElementById('copy').textContent=n.text;
+ document.getElementById('back').style.visibility=index===0?'hidden':'visible';
+ document.getElementById('next').textContent=index===5?"One last thing →":"Next little note →";
+ card.style.animation='none';void card.offsetWidth;card.style.animation='';
+}
+document.getElementById('goLetter').onclick=()=>{
+ welcome.style.display='none';letterStage.style.display='block';flowerBurst();
+};
+document.getElementById('openLetter').onclick=()=>{
+ letterStage.style.display='none';index=0;showNote();flowerBurst();
+};
+document.getElementById('next').onclick=()=>{
+ if(index<5){index++;showNote();flowerBurst()}
+ else{card.style.display='none';final.style.display='block';flowerBurst()}
+};
+document.getElementById('back').onclick=()=>{if(index>0){index--;showNote()}};
+document.getElementById('again').onclick=()=>{
+ final.style.display='none';card.style.display='none';welcome.style.display='block';flowerBurst();
+};
+const petals=document.getElementById('petals');
+for(let i=0;i<30;i++){const p=document.createElement('i');p.className='petal';p.style.left=Math.random()*100+'%';p.style.animationDuration=(9+Math.random()*12)+'s';p.style.animationDelay=(-Math.random()*18)+'s';p.style.setProperty('--drift',(Math.random()*180-90)+'px');p.style.opacity=(.35+Math.random()*.5);p.style.transform='scale('+(0.55+Math.random()*.8)+')';petals.appendChild(p)}
+</script>
+</body>
+</html>
